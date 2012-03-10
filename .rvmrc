@@ -6,6 +6,11 @@ gemset_name="poker"
 export rvm_trust_rvmrcs_flag=1
 rvm_install_on_use_flag=1
 rvm_project_rvmrc_default=1
+rvm_gemset_create_on_use_flag=1
+
+#node config
+current_dir=`pwd`
+export NODE_PATH="$current_dir/server/vendor/node_modules"
 
 #colors
 ok="\033[10;32m"
@@ -14,51 +19,7 @@ end="\033[0m"
  
 
 #### Check for the required version of ruby
-if rvm list strings | grep -q "${ruby_version}" ; then
   rvm use ${ruby_version}
-
-#### Offer to install required ruby version if it is not installed
-else
-  echo -e "${warn}You do not have the required Ruby installed: ${ruby_version}${end}"
-	echo -ne "Install ${warn}Ruby ${ruby_version}${end} now (y/n)?: "
-  read -n 1 answer
-    case "$answer" in
-  		y|Y)
-        echo ""
-        rvm install ${ruby_version}
-        rvm use ${ruby_version}
-		  ;;
-		  *)
-		    echo ""
-        echo -e "Skipped install, using: ${warn}"`ruby -v`"${end}"
-		  ;;
-    esac
-fi
-
-#### Check for the gemset
-#turn on option to create gemset automatically -- saves the need to prompt the user
-rvm_gemset_create_on_use_flag=1
-
-# if rvm gemset list | grep -q "${gemset_name}" ; then
-  echo -e "${ok}Using the ${gemset_name} gemset${end}"
-  rvm gemset use ${gemset_name}
-
-#### Offer to create the gemset if it does not exist
-# else
-#   echo -ne "The ${warn}${gemset_name}${end} gemset does not exist, create it (y/n)? "
-#   read -n 1 answer
-#     case "$answer" in
-#       y|Y)
-#         echo ""
-#         rvm gemset create ${gemset_name}
-#       ;;
-#       *)
-#         echo ""
-#         echo -e "Skipped creating gemset, using the ${warn}global${end} gemset"
-#       ;;
-#     esac
-# 
-# fi
 
 # if ! command -v bundle > /dev/null ; then
 #   echo -ne "${warn}Bundler is not installed! ${end}\nInstall it now (y/n)? "

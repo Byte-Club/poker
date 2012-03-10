@@ -1,5 +1,8 @@
 {
   "name": "poker",
   "version": "0.1.0",
-  "author": "Byteclub"
+  "author": "Byteclub",
+  "dependencies": {
+    "express": "*"
+   }
 }
