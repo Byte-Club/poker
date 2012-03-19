@@ -1,6 +1,8 @@
 /*globals Poker spyOn*/
-require('../spec_helper');
-require('../../models/card');
+var libPath = process.env.POKER_COV ? '../../../coverage/shared' : '../../../shared';
+
+require('../../spec_helper');
+require(libPath + '/models/card');
 
 //Card values should map to this array
 Poker.Spec = {
@@ -29,29 +31,29 @@ describe("Poker.Card", function() {
 			testCard = new subject(51);
 			expect(testCard instanceof Poker.Object).to.be.true;
 		});
-  });
+	});
 
-  describe('Validations', function() {
-    it('throws an error for a cardNumber below 0', function() {
-      testCard = function() {
-        return new subject(-1);
-      };
-      expect(testCard).to.throw();
-    });
+	describe('Validations', function() {
+		it('throws an error for a cardNumber below 0', function() {
+			testCard = function() {
+				return new subject(-1);
+			};
+			expect(testCard).to.throw();
+		});
 
-    it('throws an error for a cardNumber above 51', function() {
-      testCard = function() {
-        return new subject(75);
-      };
-      expect(testCard).to.throw();
-    });
+		it('throws an error for a cardNumber above 51', function() {
+			testCard = function() {
+				return new subject(75);
+			};
+			expect(testCard).to.throw();
+		});
 
-    it('does NOT throw an error for a cardNumber between 0-51', function() {
-      testCard = function() {
-        return new subject(35);
-      };
-      expect(testCard).not.to.throw();
-    });
+		it('does NOT throw an error for a cardNumber between 0-51', function() {
+			testCard = function() {
+				return new subject(35);
+			};
+			expect(testCard).not.to.throw();
+		});
 	});
 
 	describe('Computed Properties', function() {
