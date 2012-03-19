@@ -9,5 +9,9 @@
   "devDependencies": {
     "mocha": "*",
     "chai": "*"
+  },
+  "scripts": {
+    "start": "node server/lib/poker_server.js",
+    "test": "mocha $(find ./test -name \"*.js\")"
   }
 }
