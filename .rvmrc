@@ -8,33 +8,9 @@ rvm_install_on_use_flag=1
 rvm_project_rvmrc_default=1
 rvm_gemset_create_on_use_flag=1
 
-#node config
-current_dir=`pwd`
-export NODE_PATH="$current_dir/server/vendor/node_modules"
+rvm use ${ruby_version}
 
-#colors
-ok="\033[10;32m"
-warn="\033[10;31m"
-end="\033[0m"
- 
-
-#### Check for the required version of ruby
-  rvm use ${ruby_version}
-
-# if ! command -v bundle > /dev/null ; then
-#   echo -ne "${warn}Bundler is not installed! ${end}\nInstall it now (y/n)? "
-#   read -n 1 answer
-#     case "$answer" in
-#       y|Y)
-#         echo ""
-#         gem install bundler
-#       ;;
-#       *)
-#         echo ""
-#         echo -e "Skipped installing bundler. Run ${warn}gem install bundler${end} to install manually."
-#       ;;
-#     esac
-# else 
-#   echo -ne ${end}
-# fi
+if [ -z "$(gem list bundler | grep 'bundler')" ]; then
+  gem install --no-rdoc --no-ri bundler
+fi
 
