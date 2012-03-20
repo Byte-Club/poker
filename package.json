@@ -4,7 +4,8 @@
   "author": "Byteclub",
   "dependencies": {
     "express": "*",
-    "socket.io": "*"
+    "socket.io": "*",
+		"mongodb": "*"
   },
   "devDependencies": {
     "mocha": "*",
