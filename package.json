@@ -13,6 +13,8 @@
   },
   "scripts": {
     "start": "node server/lib/poker_server.js",
-    "test": "mocha $(find ./test -name \"*.js\")"
+		"pretest": "mongod --fork --logpath data/log/test.log --logappend --dbpath data/db",
+    "test": "mocha $(find ./test -name \"*.js\")",
+		"posttest": "kill -2 `cat data/db/mongod.lock`"
   }
 }
