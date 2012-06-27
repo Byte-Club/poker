@@ -22,7 +22,7 @@ describe("Poker.Card", function() {
 	});
 
 	describe('Constructor', function() {
-		it('sets the internal _cardNumber value', function() {
+		it('stores the internal value of the card', function() {
 			testCard = new subject(51);
 			expect(testCard.get('_cardNumber')).to.equal(51);
 		});
@@ -32,6 +32,7 @@ describe("Poker.Card", function() {
 			expect(testCard instanceof Poker.Object).to.be.true;
 		});
 	});
+
 
 	describe('Validations', function() {
 		it('throws an error for a cardNumber below 0', function() {
@@ -82,17 +83,23 @@ describe("Poker.Card", function() {
 
 		describe('numericValue', function() {
 			it("returns the numeric value of face cards", function() {
-				testCard = new subject(12);
+				testCard = new subject(12); //A = 14	
 				expect(testCard.get('numericValue')).to.equal(14);
-				testCard = new subject(11);
+				testCard = new subject(11); //K = 13
 				expect(testCard.get('numericValue')).to.equal(13);
-				testCard = new subject(10);
+				testCard = new subject(10); //Q = 12
 				expect(testCard.get('numericValue')).to.equal(12);
-				testCard = new subject(9);
+				testCard = new subject(9); //J = 11
 				expect(testCard.get('numericValue')).to.equal(11);
-				testCard = new subject(8);
+				testCard = new subject(8); //T = 10
 				expect(testCard.get('numericValue')).to.equal(10);
 			});
+
+			it("returns the numeric value cards in higher suits", function() {
+				testCard = new subject(25); //A = 14	
+				expect(testCard.get('numericValue')).to.equal(14);				
+			});
+
 		});
 
 		describe('suit', function() {
