@@ -22,4 +22,4 @@ Running Tests
 
 	make test
 
-Tests are written using [mocha.js](http://visionmedia.github.com/mocha) and [chai.js](http://chaijs.com/). 
+Tests are written using [mocha.js](http://mochajs.org/) and [chai.js](http://chaijs.com/). 
